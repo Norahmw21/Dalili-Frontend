@@ -17,6 +17,8 @@ import { faUser, faEnvelope, faLock, faArrowRight } from '@fortawesome/free-soli
 library.add(faUser, faEnvelope, faLock, faArrowRight);
 
 // Configure Axios globally
+ 
+
 axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.headers.common['Accept'] = 'application/json';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
