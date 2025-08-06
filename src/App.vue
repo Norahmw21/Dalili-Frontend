@@ -1,16 +1,8 @@
 <script setup>
-import Landing02 from './views/Landing02.vue';
-// import LandingPage from './views/LandingPage.vue';
-import ProfilePage from './views/ProfilePage.vue';
 </script>
 
 <template>
-
- <!-- <router-view /> -->
-  <!-- <LandingPage/> -->
-  <Landing02/>
-    <ProfilePage/>
-
+   <router-view></router-view>
 </template>
 
 <style scoped>
