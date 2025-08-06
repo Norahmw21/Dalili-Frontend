@@ -5,6 +5,7 @@ import 'primeicons/primeicons.css'
 import App from './App.vue';
 import './style.css'
 import axios from 'axios';
+import router from './router';
 
 // Configure Axios globally
 axios.defaults.baseURL = 'http://localhost:8080'; // Your backend URL
@@ -22,7 +23,7 @@ app.use(PrimeVue, {
     },
 });
 
-
+app.use(router);
 app.config.globalProperties.$axios = axios;
 
 app.mount('#app');
