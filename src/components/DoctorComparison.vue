@@ -1,6 +1,6 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import {ref, onMounted, watch} from 'vue';
+import {useRoute, useRouter} from 'vue-router';
 import axios from 'axios';
 import ProgressSpinner from 'primevue/progressspinner';
 import Button from 'primevue/button';
@@ -24,7 +24,6 @@ const fetchDoctors = async () => {
       const resp = await axios.get(`/doctors/${id}`);
       doctors.value.push(resp.data);
     } catch (e) {
-      // Handle not found, skip
     }
   }
   loading.value = false;
@@ -58,7 +57,7 @@ watch(() => route.query.ids, (newIds) => {
 
       <!-- Loading State -->
       <div v-if="loading" class="flex flex-col items-center justify-center py-16">
-        <ProgressSpinner class="mb-4" />
+        <ProgressSpinner class="mb-4"/>
         <p class="text-gray-600 text-lg">Loading doctor profiles...</p>
       </div>
 
@@ -82,8 +81,20 @@ watch(() => route.query.ids, (newIds) => {
       <!-- Comparison Cards -->
       <div v-else class="space-y-8">
         <!-- Desktop: Side by side cards -->
-        <div class="hidden lg:grid gap-6" :class="`grid-cols-${Math.min(doctors.length, 3)}`">
-          <Card v-for="doctor in doctors" :key="doctor.id" class="h-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div
+            class="hidden lg:grid gap-6"
+            :class="{
+    'grid-cols-2': doctors.length === 2,
+    'grid-cols-3': doctors.length === 3,
+    'grid-cols-4': doctors.length === 4,
+    'grid-cols-1': doctors.length === 1
+  }"
+        >
+          <Card
+              v-for="doctor in doctors"
+              :key="doctor.id"
+              class="h-full flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300"
+          >
             <template #header>
               <div class="relative">
                 <div class="h-32 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-lg"></div>
@@ -94,7 +105,8 @@ watch(() => route.query.ids, (newIds) => {
                       class="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover"
                       :alt="doctor.name"
                   />
-                  <div v-else class="w-24 h-24 rounded-full border-4 border-white shadow-lg bg-gray-200 flex items-center justify-center">
+                  <div v-else
+                       class="w-24 h-24 rounded-full border-4 border-white shadow-lg bg-gray-200 flex items-center justify-center">
                     <i class="pi pi-user text-2xl text-gray-500"></i>
                   </div>
                 </div>
@@ -105,7 +117,7 @@ watch(() => route.query.ids, (newIds) => {
               <div class="pt-8 text-center">
                 <!-- Name and Specialty -->
                 <h3 class="text-xl font-bold text-gray-900 mb-1">{{ doctor.name }}</h3>
-                <Badge :value="doctor.specialty" class="mb-4" severity="info" />
+                <Badge :value="doctor.specialty" class="mb-4" severity="info"/>
 
                 <!-- Experience -->
                 <div class="flex items-center justify-center gap-2 mb-6">
@@ -113,7 +125,7 @@ watch(() => route.query.ids, (newIds) => {
                   <span class="text-gray-700">{{ doctor.yearsOfExperience }} years experience</span>
                 </div>
 
-                <Divider />
+                <Divider/>
 
                 <!-- Contact Info -->
                 <div class="space-y-3 mb-6">
@@ -159,7 +171,8 @@ watch(() => route.query.ids, (newIds) => {
                       class="w-24 h-24 rounded-full mx-auto sm:mx-0 shadow-lg object-cover"
                       :alt="doctor.name"
                   />
-                  <div v-else class="w-24 h-24 rounded-full mx-auto sm:mx-0 shadow-lg bg-gray-200 flex items-center justify-center">
+                  <div v-else
+                       class="w-24 h-24 rounded-full mx-auto sm:mx-0 shadow-lg bg-gray-200 flex items-center justify-center">
                     <i class="pi pi-user text-2xl text-gray-500"></i>
                   </div>
                 </div>
@@ -167,7 +180,7 @@ watch(() => route.query.ids, (newIds) => {
                 <!-- Info -->
                 <div class="flex-1 text-center sm:text-left">
                   <h3 class="text-xl font-bold text-gray-900 mb-2">{{ doctor.name }}</h3>
-                  <Badge :value="doctor.specialty" class="mb-3" severity="info" />
+                  <Badge :value="doctor.specialty" class="mb-3" severity="info"/>
 
                   <div class="space-y-2 mb-4">
                     <div class="flex items-center justify-center sm:justify-start gap-2">
@@ -202,7 +215,7 @@ watch(() => route.query.ids, (newIds) => {
         <!-- Back Button -->
         <div class="flex justify-center pt-8">
           <Button
-              label="Back to Search"
+              label="Back"
               icon="pi pi-arrow-left"
               class="p-button-lg p-button-outlined"
               @click="router.push({ name: 'DoctorList' })"
