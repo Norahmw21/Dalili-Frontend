@@ -1,51 +1,44 @@
-import { createApp } from 'vue'
-import PrimeVue from 'primevue/config'
-import App from './App.vue'
-import './style.css'
-import router from './router/Index'
-import Aura from '@primeuix/themes/aura'
 // src/main.js
-import {createApp} from 'vue';
-import PrimeVue from 'primevue/config';
-import 'primeicons/primeicons.css'
+import { createApp } from 'vue';
 import App from './App.vue';
-import './style.css'
+import PrimeVue from 'primevue/config';
+import Aura from '@primeuix/themes/aura';
+import 'primeicons/primeicons.css';
+import './style.css';
+import router from './router/Index';
 import axios from 'axios';
 
+// Font Awesome imports
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faUser, faEnvelope, faLock, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
+// Add icons to the library
+library.add(faUser, faEnvelope, faLock, faArrowRight);
+
 // Configure Axios globally
-axios.defaults.baseURL = 'http://localhost:8080'; // Your backend URL
+axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.headers.common['Accept'] = 'application/json';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
-
-import Aura from '@primeuix/themes/aura';
-// import router from './router';
-
-
+// Create the Vue app
 const app = createApp(App);
-// app.use(router);
-// Font Awesome imports
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faUser, faEnvelope, faLock, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
-// Add the icons to the library once
-library.add(faUser, faEnvelope, faLock, faArrowRight)
-
-const app = createApp(App)
-
+// Use PrimeVue with Aura theme
 app.use(PrimeVue, {
   theme: {
     preset: Aura,
   },
-})
+});
 
-app.component('font-awesome-icon', FontAwesomeIcon)
+// Register Font Awesome globally
+app.component('font-awesome-icon', FontAwesomeIcon);
 
-app.use(router)
+// Use the router
+app.use(router);
 
-app.mount('#app')
-
+// Assign axios globally
 app.config.globalProperties.$axios = axios;
 
+// Mount the app
 app.mount('#app');
