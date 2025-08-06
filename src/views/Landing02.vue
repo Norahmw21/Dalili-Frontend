@@ -32,9 +32,10 @@
           WELCOME TO DALILI Your Trusted Companion For Finding The Right Doctor.
         </p>
         
-        <button class="bg-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-600 transition">
-          Get Started →
-        </button>
+       <button @click="router.push('/login')" class="bg-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-600 transition">
+  Get Started →
+</button>
+
       </div>
 
       <div class="lg:w-1/2 mt-10 lg:mt-0 relative">
@@ -292,6 +293,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const topDoctors = ref([])
 const defaultImage = '/src/assets/default-doctor.png'

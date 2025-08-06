@@ -1,7 +1,9 @@
 <template>
   <div class="min-h-screen flex">
+        <div class="container mx-auto ml-8 mr-8 my-6 px-4 lg:px-8 rounded-3xl overflow-hidden shadow-xl bg-gray-50 flex flex-col lg:flex-row min-h-[85vh]">
+
     <!-- Left Side - Dark Section with Content -->
-    <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+      <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden rounded-3xl">
       <!-- Background Pattern -->
       <div class="absolute inset-0 opacity-10">
         <div class="absolute top-20 left-20 w-32 h-32 bg-blue-500 rounded-full blur-3xl"></div>
@@ -71,8 +73,9 @@
       </div>
     </div>
 
-    <!-- Right Side - Login Form -->
-    <div class="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 px-4 py-8">
+    <!-- Right Side - Login Form --> 
+      <div class="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 px-4 py-10 rounded-3xl">
+        
       <div class="w-full max-w-md">
         <!-- Mobile Logo (visible only on mobile) -->
         <div class="lg:hidden text-center mb-8">
@@ -99,8 +102,34 @@
         <!-- Header -->
         <div class="text-center mb-8">
           <h2 class="text-3xl font-bold text-gray-900 mb-2">Hello!</h2>
+          
           <p class="text-gray-600">Please enter your Email and Password below <br class="hidden sm:block" />to have access to your account</p>
         </div>
+       <!-- User Type Toggle -->
+<div class="flex mb-8 bg-gray-100 rounded-xl p-1 gap-2">
+  <!-- Patient Button -->
+  <button type="button"
+    class="flex-1 py-3 px-4 rounded-lg font-medium text-xs transition-all duration-200 bg-gray-900 text-white shadow-sm">
+    <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+    </svg>
+    Patient
+  </button>
+
+  <!-- Continue as Guest Button -->
+  <button
+    type="button"
+    @click="router.push('/')"
+    class="flex-1 py-3 px-4 rounded-lg font-medium text-xs transition-all duration-200 bg-white text-gray-700 hover:bg-gray-200 border border-gray-300 shadow-sm"
+  >
+    <svg class="w-4 h-4 inline mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M15 19l-7-7 7-7" />
+    </svg>
+    Continue as Guest
+  </button>
+</div>
 
         <!-- Error Message -->
         <div v-if="error" class="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-xl text-sm">
@@ -216,6 +245,7 @@
         </div>
       </div>
     </div>
+        </div>
   </div>
 </template>
 

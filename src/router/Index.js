@@ -3,7 +3,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
  import ReviewsPage from '../views/ReviewForm.vue'
 
-import Home from '../views/Home.vue' // or any component you want at /
+import Home from '../views/Landing02.vue' // or any component you want at /
 
 const routes = [
   { path: '/', component: Home },
