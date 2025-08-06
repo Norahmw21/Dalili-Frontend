@@ -173,22 +173,61 @@
                     </div>
                   </template>
                 </Card>
+
               </div>
             </div>
           </div>
         </template>
       </Card>
+
+      <Card class="mt-6 mb-8 shadow-xl">
+        <template #content>
+          <div>
+            <h2 class="flex items-center gap-3 text-xl font-bold text-gray-900 mb-3">
+              <i class="pi pi-map-marker text-red-500"></i>
+              Location
+            </h2>
+            <div class="w-full flex flex-col md:flex-row gap-4">
+              <div class="flex-1">
+                <div
+                    v-if="doctor?.latitude && doctor?.longitude"
+                    class="rounded-xl overflow-hidden"
+                    style="min-height: 220px; height: 220px;"
+                >
+                  <div id="doctor-map" class="w-full h-full rounded-xl"></div>
+                </div>
+                <div v-else class="bg-gray-100 p-6 rounded-xl text-gray-500 text-center">
+                  <i class="pi pi-map-marker text-3xl mb-2"></i>
+                  <div>No location data available for this doctor.</div>
+                </div>
+              </div>
+
+              <div v-if="doctor?.hospitalName" class="flex items-center">
+                <div>
+                  <div class="font-semibold text-gray-700 mb-2">Hospital</div>
+                  <div class="text-lg text-blue-900">{{ doctor.hospitalName }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </Card>
+
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch, nextTick } from 'vue';
 import { useRoute } from 'vue-router'
 import axios from 'axios'
 import ProgressSpinner from 'primevue/progressspinner'
 import Card from 'primevue/card'
 import Badge from 'primevue/badge'
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+
 
 const route = useRoute()
 const doctorId = route.params.id
@@ -196,6 +235,75 @@ const doctorId = route.params.id
 const doctor = ref(null)
 const reviews = ref([])
 const reviewsLoading = ref(false)
+
+const hospitalLocation = ref(null)
+const map = ref(null);
+const marker = ref(null);
+
+const initDoctorMap = () => {
+  if (!doctor.value?.latitude || !doctor.value?.longitude) return;
+
+  nextTick(() => {
+    if (map.value && map.value.remove) {
+      map.value.remove();
+      map.value = null;
+    }
+
+    const mapContainer = document.getElementById('doctor-map');
+    if (!mapContainer) return;
+
+    mapContainer.innerHTML = '';
+    map.value = L.map(mapContainer).setView(
+        [doctor.value.latitude, doctor.value.longitude],
+        15
+    );
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map.value);
+
+    // Marker
+    marker.value = L.marker([doctor.value.latitude, doctor.value.longitude])
+        .addTo(map.value)
+        .bindPopup(
+            `<b>${doctor.value.name}</b><br>${doctor.value.hospitalName ?? ''}`
+        );
+
+    marker.value.openPopup();
+  });
+};
+
+
+// When doctor data loaded, initialize the map
+watch(
+    () => doctor.value,
+    (newVal) => {
+      if (newVal && newVal.latitude && newVal.longitude) {
+        nextTick(() => {
+          initDoctorMap();
+        });
+      }
+    }
+);
+const fetchHospitalLocation = async () => {
+  if (!doctor.value?.name) return
+  try {
+    const { data } = await axios.get('/doctors/search-with-hospital', {
+      params: { name: doctor.value.name }
+    })
+
+    if (Array.isArray(data) && data.length > 0) {
+
+      const found = data.find(d => d.doctorId === doctor.value.id) || data[0]
+      hospitalLocation.value = found
+
+      doctor.value.latitude = Number(found.latitude)
+      doctor.value.longitude = Number(found.longitude)
+      doctor.value.hospitalName = found.hospitalName
+    }
+  } catch (e) {
+    hospitalLocation.value = null
+  }
+}
 
 const fetchDoctor = async () => {
   try {
@@ -218,8 +326,21 @@ const fetchReviews = async () => {
   }
 }
 
-onMounted(() => {
-  fetchDoctor()
+onMounted(async () => {
+  await fetchDoctor()
+  await fetchHospitalLocation()
   fetchReviews()
 })
+
 </script>
+<style scoped>
+@import 'leaflet/dist/leaflet.css';
+
+#doctor-map {
+  width: 100%;
+  height: 220px;
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+</style>
