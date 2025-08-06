@@ -138,43 +138,71 @@
               </div>
 
               <!-- Individual Reviews -->
-                <div class="grid gap-4 md:grid-cols-2">
-                  <ReviewCard
-                      v-for="review in reviews"
-                      :key="review.id"
-                      :rating="review.overallRating"
-                      :comment="review.comment"
-                      :createdAt="review.createdAt"
-                      :userName="review.userName"
-                      :doctorName="doctor?.name"
-                  />
-                </div>
+              <div class="grid gap-4 md:grid-cols-2">
+                <ReviewCard
+                    v-for="review in reviews"
+                    :key="review.id"
+                    :rating="review.overallRating"
+                    :comment="review.comment"
+                    :createdAt="review.createdAt"
+                    :userName="review.userName"
+                    :doctorName="doctor?.name"
+                />
+              </div>
 
             </div>
+
+            <!--  add review button-->
+            <div class="flex justify-end mb-6">
+              <button
+                  @click="goToAddReview"
+                  class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-xl shadow font-semibold transition"
+              >
+                <i class="pi pi-plus mr-2"></i>
+                Add Review
+              </button>
+            </div>
+
+
           </div>
+
+
         </template>
+
       </Card>
+
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref, onMounted,computed } from 'vue';
-import {useRoute} from 'vue-router'
+import {ref, onMounted, computed} from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios'
 import ProgressSpinner from 'primevue/progressspinner'
 import Card from 'primevue/card'
 import Badge from 'primevue/badge'
 import ReviewCard from './ReviewCard.vue'
+import ReviewForm from "../views/ReviewForm.vue";
 
 
 const route = useRoute()
 const doctorId = route.params.id
-
+const showAddReview = ref(false)
 const doctor = ref(null)
 const reviews = ref([])
 const reviewsLoading = ref(false)
 
+//review form
+const router = useRouter()
+const userId = JSON.parse(localStorage.getItem('user') || '{}')?.user_id
+const goToAddReview = () => {
+  router.push({
+    name: 'ReviewForm',
+    params: {id: doctorId},
+    query: {userId}
+  })
+}
 
 const fetchDoctor = async () => {
   try {
