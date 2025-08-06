@@ -5,11 +5,10 @@
     <Button label="Add Doctor" icon="pi pi-plus" class="mb-3" @click="openAddForm" />
 
     <DataTable :value="doctors" dataKey="id" class="mb-3" responsiveLayout="scroll">
-        <Column field="id" header="ID" />
-        <Column field="name" header="Name" />
+        <Column field="doctorId" header="ID" />
+        <Column field="doctorName" header="Name" />
         <Column field="hospitalName" header="Hospital" />
         <Column field="specialty" header="Specialty" />
-        <Column field="hospitalName" header="Hospital" />
         <Column field="yearsOfExperience" header="Experience (Years)" />
         <Column field="contactEmail" header="Email" />
         <Column field="contactPhone" header="Phone" />
@@ -56,8 +55,6 @@
         <label>Specialty:</label>
         <input v-model="editingDoctor.specialty" class="input" />
 
-        <label>Hospital:</label>
-        <input v-model="editingDoctor.hospitalId" class="input" />
         <label>Hospital:</label>
         <select v-model="editingDoctor.hospitalId" class="input">
             <option disabled value="">Select a hospital</option>

@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <Navbar/>
+  
   <div class="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-8">
     <div class="w-full max-w-lg">
       <!-- Header -->
@@ -101,11 +104,13 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import Navbar from '../components/Navbar.vue'
 
 const route = useRoute()
 const router = useRouter()
