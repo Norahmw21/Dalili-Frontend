@@ -120,7 +120,7 @@
   <!-- Continue as Guest Button -->
   <button
     type="button"
-    @click="router.push('/')"
+    @click="router.push('/doctorList')"
     class="flex-1 py-3 px-4 rounded-lg font-medium text-xs transition-all duration-200 bg-white text-gray-700 hover:bg-gray-200 border border-gray-300 shadow-sm"
   >
     <svg class="w-4 h-4 inline mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
