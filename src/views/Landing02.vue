@@ -21,21 +21,6 @@
     <!-- Hero Section -->
     <div class="flex flex-col lg:flex-row items-center justify-between px-8 py-16 max-w-7xl mx-auto">
       <div class="lg:w-1/2 text-left">
-        <!-- Search Bar -->
-        <!-- <div class="mb-8">
-          <div class="relative">
-            <input 
-              type="text" 
-              placeholder="Search for doctors, specialties..." 
-              class="w-full max-w-md px-4 py-3 border-2 border-gray-200 rounded-full focus:outline-none focus:border-teal-500"
-            />
-            <button class="absolute right-3 top-3 text-gray-400">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-              </svg>
-            </button>
-          </div>
-        </div> -->
 
         <h1 class="text-5xl font-bold text-gray-800 mb-6 leading-tight">
           YOUR
