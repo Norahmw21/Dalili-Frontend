@@ -28,14 +28,15 @@
         <Button
             label="Search"
             icon="pi pi-search"
-            class="w-full md:w-auto"
+            class=" w-full md:w-auto !bg-blue-500 !border-blue-500 hover:!bg-blue-600 hover:!border-blue-600 !text-white"
             @click="searchDoctors"
         />
 
         <Button
             label="Compare"
             icon="pi pi-list-check"
-            class="w-full md:w-auto"
+            class=" w-full md:w-auto !bg-blue-500 !border-blue-500 hover:!bg-blue-600 hover:!border-blue-600 !text-white"
+
             :disabled="selectedDoctors.length < 2"
             @click="compareDoctors"
         />
@@ -45,6 +46,7 @@
         <i class="pi pi-exclamation-triangle mr-2"></i>{{ errorMessage }}
       </div>
     </div>
+
     <!-- Main Content -->
     <div class="flex flex-col md:flex-row flex-1 overflow-hidden">
 
@@ -100,9 +102,8 @@
                 </div>
 
                 <div class="mt-4 flex gap-3">
-                  <Button label="Details" @click.stop="goToDoctorProfile(doctor.doctorId)"/>
+                  <Button class="!bg-blue-500 !border-blue-500 hover:!bg-blue-600 hover:!border-blue-600 !text-white" label="Details" @click.stop="goToDoctorProfile(doctor.doctorId)"/>
                 </div>
-
 
               </div>
             </div>
@@ -167,9 +168,9 @@ const selectedDoctors = ref([]);
 // Initialize map with default country view
 const initMap = () => {
   try {
-    // Saudi Arabia approx center + zoom level
+    // Saudi Arabia
     const defaultLatLng = [23.8859, 45.0792];
-    map.value = L.map('map').setView(defaultLatLng, 5);
+    map.value = L.map('map',{minZoom: 2}).setView(defaultLatLng, 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
@@ -325,7 +326,7 @@ const searchDoctors = async () => {
 
 // Navigate to doctor profile page
 const goToDoctorProfile = (doctorId) => {
-  router.push({ name: 'DoctorProfile', params: { id: doctorId } });
+  router.push({name: 'DoctorProfile', params: {id: doctorId}});
 }
 
 
