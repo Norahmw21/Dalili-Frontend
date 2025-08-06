@@ -29,7 +29,7 @@
 
 
     <!-- Modal Form -->
-    <Dialog v-model:visible="showForm" :header="editingDoctor.id ? 'Edit Doctor' : 'Add Doctor'" modal class="w-4" :closable="false">
+    <Dialog v-model:visible="showForm" :header="editingDoctor.id ? 'Edit Doctor' : 'Add Doctor'" modal class="w-full max-w-2xl" :closable="false">
       <div class="form">
         <label>Name:</label>
         <input v-model="editingDoctor.name" class="input" />

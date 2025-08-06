@@ -13,7 +13,7 @@
       <Column field="createdAt" header="Created At" />
     </DataTable>
 
-    <Dialog v-model:visible="filterDialog" header="Filter by Doctor" modal class="w-4">
+    <Dialog v-model:visible="filterDialog" header="Filter by Doctor" modal class="w-full max-w-2xl">
       <Dropdown
         v-model="selectedDoctor"
         :options="doctors"

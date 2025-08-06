@@ -20,7 +20,7 @@
     </DataTable>
 
     <!-- Modal Form -->
-    <Dialog v-model:visible="showForm" :header="editingHospital.id ? 'Edit Hospital' : 'Add Hospital'" modal class="w-4" :closable="false">
+    <Dialog v-model:visible="showForm" :header="editingHospital.id ? 'Edit Hospital' : 'Add Hospital'" modal class="w-full max-w-2xl" :closable="false">
       <div class="form">
         <label>Name:</label>
         <input v-model="editingHospital.name" class="input" />
