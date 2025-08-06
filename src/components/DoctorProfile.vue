@@ -1,5 +1,8 @@
 <template>
+  <div>
+    <Navbar/>
   <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8">
+  
     <div class="max-w-6xl mx-auto px-6">
       <!-- Profile Header Card -->
       <Card class="mb-8 shadow-xl">
@@ -156,6 +159,7 @@
       </Card>
     </div>
   </div>
+  </div>
 </template>
 
 <script setup>
@@ -166,6 +170,7 @@ import ProgressSpinner from 'primevue/progressspinner'
 import Card from 'primevue/card'
 import Badge from 'primevue/badge'
 import ReviewCard from './ReviewCard.vue'
+import Navbar from './Navbar.vue';
 
 
 const route = useRoute()
