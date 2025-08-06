@@ -19,7 +19,11 @@ axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 
 import Aura from '@primeuix/themes/aura';
+// import router from './router';
 
+
+const app = createApp(App);
+// app.use(router);
 // Font Awesome imports
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
