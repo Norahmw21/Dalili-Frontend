@@ -206,7 +206,7 @@ const handleSignup = async () => {
     if (res.status === 200 || res.status === 201) {
       success.value = true
       setTimeout(() => {
-        router.push('/')
+        router.push('/doctorList')
       }, 2000)
     } else {
       error.value = 'Failed to register. Please try again.'

@@ -261,7 +261,7 @@ const loginSuccess = ref(false)
 const router = useRouter()
 
 watch(loginSuccess, (value) => {
-  if (value) router.push('/')
+  if (value) router.push('/doctorList')
 })
 
 const handleLogin = async () => {
