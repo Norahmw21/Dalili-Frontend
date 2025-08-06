@@ -1,4 +1,5 @@
 <template>
+  <Navbar/>
   <div class="flex flex-col h-screen">
     <!-- Search and Filters -->
     <div class="p-4">
@@ -142,6 +143,7 @@ import Select from 'primevue/select';
 import Button from 'primevue/button';
 import Tag from 'primevue/tag';
 import ProgressSpinner from 'primevue/progressspinner';
+import Navbar from './Navbar.vue';
 
 // Reactive states
 const doctors = ref([]);
