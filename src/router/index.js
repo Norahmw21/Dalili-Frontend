@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-// **Views (pages)**
+// Import your components
+import DoctorManagement from '../components/DoctorMangment.vue'
+import HospitalManagement from '../components/HospitalManagement.vue'
+import ReviewsMangment from '../components/ReviewsMangment.vue'
+ 
+
+// Views (pages)
 import Home from '../views/Landing02.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import ReviewsPage from '../views/ReviewForm.vue'
 
-// **Components**
+// Components
 import DoctorsList from '../components/DoctorsList.vue'
 import DoctorComparison from '../components/DoctorComparison.vue'
 import DoctorProfile from '../components/DoctorProfile.vue'
@@ -22,11 +28,26 @@ const routes = [
   { path: '/doctorList', name: 'DoctorList', component: DoctorsList },
   { path: '/compare', name: 'DoctorComparison', component: DoctorComparison },
   { path: '/doctor/:id', name: 'DoctorProfile', component: DoctorProfile },
+    {
+    path: '/api/hospitals',
+    name: 'Hospitals',
+    component: HospitalManagement
+  },
+  {
+    path: '/doctors',
+    name: 'Doctors',
+    component: DoctorManagement
+  },
+   {
+    path: '/api/reviews',
+    name: 'Reviews',
+    component: ReviewsMangment
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 })
 
 export default router
