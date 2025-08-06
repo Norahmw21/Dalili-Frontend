@@ -34,8 +34,8 @@
 
         <Button
             label="Compare"
-            icon="pi pi-exchange"
-            class="mb-4"
+            icon="pi pi-list-check"
+            class="w-full md:w-auto"
             :disabled="selectedDoctors.length < 2"
             @click="compareDoctors"
         />

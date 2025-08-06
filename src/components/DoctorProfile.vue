@@ -1,64 +1,183 @@
 <template>
-  <div class="max-w-4xl mx-auto mt-8 p-6 bg-white rounded-2xl shadow-lg border border-gray-100 flex flex-col md:flex-row gap-8">
-    <!-- Profile Photo & Main Info -->
-    <div class="flex flex-col items-center md:items-start md:w-1/3">
-      <img
-          v-if="doctor"
-          :src="doctor.photoUrl"
-          class="w-32 h-32 rounded-full shadow-md border border-gray-200 object-cover"
-          alt="Doctor Photo"
-      />
-      <div class="mt-4 text-center md:text-left">
-        <h1 class="text-2xl font-bold text-gray-800">{{ doctor?.name }}</h1>
-        <div class="text-blue-600 font-semibold mb-1">{{ doctor?.specialty }}</div>
-        <div class="text-sm text-gray-500">{{ doctor?.yearsOfExperience }} years experience</div>
-      </div>
-      <div class="flex flex-col gap-2 mt-4">
-        <div class="flex items-center gap-2 text-gray-600">
-          <i class="pi pi-phone"></i>
-          <span>{{ doctor?.contactPhone }}</span>
-        </div>
-        <div class="flex items-center gap-2 text-gray-600">
-          <i class="pi pi-envelope"></i>
-          <span>{{ doctor?.contactEmail }}</span>
-        </div>
-      </div>
-    </div>
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Profile Header Card -->
+      <Card class="mb-8 shadow-xl">
+        <template #content>
+          <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Profile Photo & Basic Info -->
+            <div class="flex flex-col items-center lg:items-start lg:w-1/3">
+              <div class="relative mb-6">
+                <img
+                    v-if="doctor?.photoUrl"
+                    :src="doctor.photoUrl"
+                    class="w-40 h-40 rounded-full shadow-xl border-4 border-white object-cover"
+                    alt="Doctor Photo"
+                />
+                <div v-else class="w-40 h-40 rounded-full shadow-xl border-4 border-white bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
+                  <i class="pi pi-user text-6xl text-blue-500"></i>
+                </div>
+              </div>
 
-    <!-- Bio, Experience, Reviews -->
-    <div class="flex-1 flex flex-col gap-6">
-      <div>
-        <h2 class="font-semibold text-lg mb-1 text-gray-800">About</h2>
-        <p class="text-gray-700 whitespace-pre-line">{{ doctor?.bio }}</p>
-      </div>
-      <div>
-        <h2 class="font-semibold text-lg mb-1 text-gray-800">Professional Experience</h2>
-        <p class="text-gray-700 whitespace-pre-line">{{ doctor?.experience }}</p>
-      </div>
-      <div>
-        <h2 class="font-semibold text-lg mb-2 text-gray-800">Patient Reviews</h2>
-        <div v-if="reviewsLoading" class="flex items-center gap-2 text-blue-500">
-          <ProgressSpinner style="width: 24px; height: 24px" strokeWidth="6" />
-          <span>Loading reviews...</span>
-        </div>
-        <div v-else-if="reviews?.length === 0" class="text-gray-400">
-          No reviews yet.
-        </div>
-        <div v-else class="space-y-3">
-          <div
-              v-for="review in reviews"
-              :key="review.id"
-              class="p-3 bg-gray-50 rounded-lg border"
-          >
-            <div class="flex items-center gap-2 mb-1">
-              <span class="font-semibold text-sm text-gray-700">Rating:</span>
-              <Tag :value="review.rating" severity="info" />
+              <div class="text-center lg:text-left">
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ doctor?.name }}</h1>
+                <Badge :value="doctor?.specialty" class="mb-3 text-lg px-4 py-2" severity="info" />
+                <div class="flex items-center justify-center lg:justify-start gap-2 text-gray-600 mb-6">
+                  <i class="pi pi-clock text-blue-500"></i>
+                  <span class="font-medium">{{ doctor?.yearsOfExperience }} years of experience</span>
+                </div>
+              </div>
+
+              <!-- Contact Information -->
+              <div class="w-full space-y-4">
+                <h3 class="font-semibold text-lg text-gray-800 text-center lg:text-left">Contact Information</h3>
+                <div class="space-y-3">
+                  <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                      <i class="pi pi-phone text-white"></i>
+                    </div>
+                    <div>
+                      <p class="text-sm text-gray-500">Phone</p>
+                      <p class="font-medium text-gray-900">{{ doctor?.contactPhone }}</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                      <i class="pi pi-envelope text-white"></i>
+                    </div>
+                    <div>
+                      <p class="text-sm text-gray-500">Email</p>
+                      <p class="font-medium text-gray-900 break-all">{{ doctor?.contactEmail }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="text-gray-700">{{ review.comment }}</div>
-            <div class="text-xs text-gray-400 mt-1">by User #{{ review.userId }}</div>
+
+            <!-- Main Content -->
+            <div class="flex-1 space-y-8">
+              <!-- About Section -->
+              <div>
+                <h2 class="flex items-center gap-3 text-2xl font-bold text-gray-900 mb-4">
+                  <i class="pi pi-info-circle text-blue-500"></i>
+                  About Dr. {{ doctor?.name?.split(' ').slice(-1)[0] }}
+                </h2>
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100">
+                  <p class="text-gray-700 leading-relaxed whitespace-pre-line">{{ doctor?.bio }}</p>
+                </div>
+              </div>
+
+              <!-- Professional Experience -->
+              <div v-if="doctor?.experience">
+                <h2 class="flex items-center gap-3 text-2xl font-bold text-gray-900 mb-4">
+                  <i class="pi pi-briefcase text-green-500"></i>
+                  Professional Experience
+                </h2>
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border border-green-100">
+                  <p class="text-gray-700 leading-relaxed whitespace-pre-line">{{ doctor?.experience }}</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </template>
+      </Card>
+
+      <!-- Reviews Section -->
+      <Card class="shadow-xl">
+        <template #content>
+          <div>
+            <h2 class="flex items-center gap-3 text-2xl font-bold text-gray-900 mb-6">
+              <i class="pi pi-star text-yellow-500"></i>
+              Patient Reviews
+            </h2>
+
+            <!-- Loading State -->
+            <div v-if="reviewsLoading" class="flex items-center justify-center py-12">
+              <div class="text-center">
+                <ProgressSpinner class="mb-4" />
+                <p class="text-gray-600">Loading patient reviews...</p>
+              </div>
+            </div>
+
+            <!-- Empty State -->
+            <div v-else-if="reviews?.length === 0" class="text-center py-12">
+              <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="pi pi-comment text-3xl text-gray-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-700 mb-2">No Reviews Yet</h3>
+              <p class="text-gray-500">Be the first to leave a review for this doctor.</p>
+            </div>
+
+            <!-- Reviews List -->
+            <div v-else class="space-y-4">
+              <!-- Overall Rating Summary = -->
+              <div v-if="reviews.length > 0" class="bg-yellow-50 p-6 rounded-xl border border-yellow-100 mb-6">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-1">Overall Rating</h3>
+                    <p class="text-gray-600">Based on {{ reviews.length }} {{ reviews.length === 1 ? 'review' : 'reviews' }}</p>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-3xl font-bold text-gray-900 mb-1">
+                      {{ (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1) }}
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <i
+                          v-for="star in 5"
+                          :key="star"
+                          class="text-lg"
+                          :class="star <= Math.round(reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length) ? 'pi pi-star-fill text-yellow-400' : 'pi pi-star text-gray-300'"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Individual Reviews -->
+              <div class="grid gap-4 md:grid-cols-2">
+                <Card
+                    v-for="review in reviews"
+                    :key="review.id"
+                    class="hover:shadow-md transition-shadow duration-200"
+                >
+                  <template #content>
+                    <div class="space-y-3">
+                      <!-- Rating Stars -->
+                      <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                          <div class="flex items-center gap-1">
+                            <i
+                                v-for="star in 5"
+                                :key="star"
+                                class="text-lg"
+                                :class="star <= review.overallRating ? 'pi pi-star-fill text-yellow-400' : 'pi pi-star text-gray-300'"
+                            ></i>
+                          </div>
+                          <span class="font-semibold text-gray-700">{{ review.overallRating }}.0</span>
+
+                        </div>
+                        <div class="text-sm text-gray-500">
+                          {{ review.userName }}
+                        </div>
+                      </div>
+
+                      <!-- Review Comment -->
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-gray-700 leading-relaxed">{{ review.comment }}</p>
+                      </div>
+
+                      <!-- Review Date (if available) -->
+                      <div v-if="review.createdAt" class="text-xs text-gray-400">
+                        {{ new Date(review.createdAt).toLocaleDateString() }}
+                      </div>
+                    </div>
+                  </template>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </template>
+      </Card>
     </div>
   </div>
 </template>
@@ -68,7 +187,8 @@ import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
 import ProgressSpinner from 'primevue/progressspinner'
-import Tag from 'primevue/tag'
+import Card from 'primevue/card'
+import Badge from 'primevue/badge'
 
 const route = useRoute()
 const doctorId = route.params.id
