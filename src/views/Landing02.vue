@@ -1,22 +1,14 @@
 
 <template>
+
+    <div>
+    <!-- other components like welcome, reviews -->
+    <ChatBot />
+  </div>
+
   <section class="bg-white min-h-screen">
     <!-- Navbar -->
-    <nav class="flex justify-between items-center px-8 py-4 bg-white shadow-sm">
-      <div class="flex items-center">
-        <div class="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center mr-3">
-          <span class="text-white font-bold text-sm">+</span>
-        </div>
-        <div class="text-2xl font-bold text-gray-800">Dalili</div>
-      </div>
-      <ul class="flex space-x-8 text-gray-600 font-medium">
-        <li><a href="#" class="hover:text-teal-500">Home</a></li>
-        <li><a href="#" class="hover:text-teal-500">About Us</a></li>
-        <li><a href="#" class="hover:text-teal-500">Find a doctor</a></li>
-        <li><a href="#" class="hover:text-teal-500">Apps</a></li>
-        <li><a href="#" class="hover:text-teal-500">Contact</a></li>
-      </ul>
-    </nav>
+    <Navbar/>
 
     <!-- Hero Section -->
     <div class="flex flex-col lg:flex-row items-center justify-between px-8 py-16 max-w-7xl mx-auto">
@@ -32,7 +24,7 @@
           WELCOME TO DALILI Your Trusted Companion For Finding The Right Doctor.
         </p>
         
-       <button @click="router.push('/login')" class="bg-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-600 transition">
+       <button @click="$router.push('/login')" class="bg-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-600 transition">
   Get Started →
 </button>
 
@@ -282,20 +274,15 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white py-8">          
-        <div class="mt-8 pt-8 border-t text-center text-gray-500 text-sm">
-          © 2025 Dalili. All rights reserved.
-        </div>
-    </footer>
+    <Footer/>
   </section>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
+import Navbar from '../components/Navbar.vue'
+import Footer from '../components/Footer.vue'
 
 const topDoctors = ref([])
 const defaultImage = '/src/assets/default-doctor.png'
