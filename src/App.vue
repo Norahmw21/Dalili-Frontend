@@ -1,9 +1,19 @@
 <script setup>
+<<<<<<< HEAD
  </script>
 
 <template>
  <router-view></router-view>
   
+=======
+import HelloWorld from './components/HelloWorld.vue'
+import DoctorsList from "./components/DoctorsList.vue";
+</script>
+
+<template>
+
+  <DoctorsList/>
+>>>>>>> 38b08917c65d6007d5a9fe68fe384a762b90581e
 </template>
 
 <style scoped>
