@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import DoctorManagement from '../components/DoctorMangment.vue'
 import HospitalManagement from '../components/HospitalManagement.vue'
 import ReviewsMangment from '../components/ReviewsMangment.vue'
- 
+
 
 // Views (pages)
 import Home from '../views/Landing02.vue'
