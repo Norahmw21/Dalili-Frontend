@@ -272,7 +272,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
@@ -281,12 +281,7 @@ const email = ref('')
 const password = ref('')
 const error = ref('')
 const loading = ref(false)
-const loginSuccess = ref(false)
 const router = useRouter()
-
-watch(loginSuccess, (value) => {
-  if (value) router.push('/doctorList')
-})
 
 const handleLogin = async () => {
   error.value = ''
@@ -299,8 +294,6 @@ const handleLogin = async () => {
   }
 
   try {
-    // Note: In production, avoid using localStorage
-    // This is implemented for compatibility with the original code
     const response = await fetch('http://localhost:8080/api/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -315,14 +308,19 @@ const handleLogin = async () => {
     if (!response.ok) throw new Error(data.message || 'Login failed')
 
     if (data) {
-      // Using localStorage as per original implementation
-      // In production, consider using httpOnly cookies for security
+      // Save user data to localStorage
       if (typeof Storage !== 'undefined') {
         localStorage.setItem('user', JSON.stringify(data))
         localStorage.setItem('token', data.token) // ✅ store JWT separately
 
       }
-      loginSuccess.value = true
+
+      // Redirect based on user role
+      if (data.role === 'admin') {
+        router.push('/doctors')
+      } else {
+        router.push('/') // or another page for non-admin users
+      }
     }
   } catch (err) {
     error.value = err.message || 'Login failed. Please check your credentials and try again.'
@@ -331,6 +329,7 @@ const handleLogin = async () => {
   }
 }
 </script>
+
 
 <style scoped>
 .font-system {
