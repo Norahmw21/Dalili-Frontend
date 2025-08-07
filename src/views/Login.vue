@@ -319,6 +319,8 @@ const handleLogin = async () => {
       // In production, consider using httpOnly cookies for security
       if (typeof Storage !== 'undefined') {
         localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('token', data.token) // ✅ store JWT separately
+
       }
       loginSuccess.value = true
     }
