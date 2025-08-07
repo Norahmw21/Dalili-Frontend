@@ -1,48 +1,122 @@
 <template>
-  <div class="card">
-    <h2>Hospital Management</h2>
-
-    <Button label="Add Hospital" icon="pi pi-plus" class="mb-3" @click="openAddForm" />
-
-    <DataTable :value="hospitals" dataKey="id" class="mb-3">
-      <Column field="id" header="ID" />
-      <Column field="name" header="Name" />
-      <Column field="address" header="Address" />
-      <Column field="latitude" header="Latitude" />
-      <Column field="longitude" header="Longitude" />
-      <Column field="websiteUrl" header="Website" />
-      <Column header="Actions">
-        <template #body="slotProps">
-          <Button icon="pi pi-pencil" class="mr-2" @click="editHospital(slotProps.data)" />
-          <Button icon="pi pi-trash" severity="danger" @click="deleteHospital(slotProps.data.id)" />
-        </template>
-      </Column>
-    </DataTable>
-
-    <!-- Modal Form -->
-    <Dialog v-model:visible="showForm" :header="editingHospital.id ? 'Edit Hospital' : 'Add Hospital'" modal class="w-full max-w-2xl" :closable="false">
-      <div class="form">
-        <label>Name:</label>
-        <input v-model="editingHospital.name" class="input" />
-
-        <label>Address:</label>
-        <textarea v-model="editingHospital.address" class="input"></textarea>
-
-        <label>Latitude:</label>
-        <input type="number" step="0.00000001" v-model.number="editingHospital.latitude" class="input" />
-
-        <label>Longitude:</label>
-        <input type="number" step="0.00000001" v-model.number="editingHospital.longitude" class="input" />
-
-        <label>Website URL:</label>
-        <input v-model="editingHospital.websiteUrl" class="input" />
-
-        <div class="mt-2">
-          <Button label="Save" icon="pi pi-check" @click="saveHospital" />
-          <Button label="Cancel" icon="pi pi-times" class="ml-2" severity="secondary" @click="cancelEdit" />
-        </div>
+  <div class="min-h-screen bg-gray-100 py-10 px-4 font-sans">
+    <div class="max-w-6xl mx-auto bg-white/70 backdrop-blur-md rounded-3xl shadow-xl p-8">
+      <!-- Header + Add Button -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <h2 class="text-3xl font-semibold text-gray-800">Hospital Management</h2>
+        <Button 
+          label="Add Hospital" 
+          icon="pi pi-plus" 
+          class="bg-blue-600 border-blue-600 text-white hover:bg-blue-700 transition-all duration-300 rounded-lg px-4 py-2"
+          @click="openAddForm" 
+        />
       </div>
-    </Dialog>
+
+      <!-- Hospital Table -->
+      <div class="overflow-x-auto rounded-xl shadow-md">
+        <DataTable 
+          :value="hospitals" 
+          dataKey="id" 
+          responsiveLayout="scroll"
+          stripedRows
+        >
+          <Column field="id" header="ID" />
+          <Column field="name" header="Name" />
+          <Column field="address" header="Address" />
+          <Column field="latitude" header="Latitude" />
+          <Column field="longitude" header="Longitude" />
+          <Column field="websiteUrl" header="Website" />
+          <Column header="Actions">
+            <template #body="slotProps">
+              <div class="flex items-center gap-2">
+                <Button 
+                  icon="pi pi-pencil" 
+                  class="p-button-sm text-blue-600 hover:text-blue-800" 
+                  @click="editHospital(slotProps.data)" 
+                />
+                <Button 
+                  icon="pi pi-trash" 
+                  class="p-button-sm text-red-500 hover:text-red-700" 
+                  @click="deleteHospital(slotProps.data.id)" 
+                />
+              </div>
+            </template>
+          </Column>
+        </DataTable>
+      </div>
+
+      <!-- Modal Form -->
+      <Dialog 
+        v-model:visible="showForm" 
+        :header="editingHospital.id ? 'Edit Hospital' : 'Add Hospital'" 
+        modal 
+        class="w-full max-w-2xl rounded-xl"
+        :closable="false"
+      >
+        <div class="space-y-4">
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Name:</label>
+              <input 
+                v-model="editingHospital.name" 
+                class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Address:</label>
+              <textarea 
+                v-model="editingHospital.address" 
+                class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" 
+                rows="2"
+              ></textarea>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Latitude:</label>
+                <input 
+                  type="number" 
+                  step="0.00000001" 
+                  v-model.number="editingHospital.latitude" 
+                  class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Longitude:</label>
+                <input 
+                  type="number" 
+                  step="0.00000001" 
+                  v-model.number="editingHospital.longitude" 
+                  class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Website URL:</label>
+              <input 
+                v-model="editingHospital.websiteUrl" 
+                class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          <!-- Form Buttons -->
+          <div class="flex justify-end gap-3 pt-4">
+            <Button 
+              label="Save" 
+              icon="pi pi-check" 
+              class="bg-blue-600 border-blue-600 text-white hover:bg-blue-700 transition-all duration-300 rounded-lg px-4 py-2"
+              @click="saveHospital" 
+            />
+            <Button 
+              label="Cancel" 
+              icon="pi pi-times" 
+              class="bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all duration-300 rounded-lg px-4 py-2"
+              @click="cancelEdit" 
+            />
+          </div>
+        </div>
+      </Dialog>
+    </div>
   </div>
 </template>
 
