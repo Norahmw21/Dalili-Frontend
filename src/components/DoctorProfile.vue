@@ -1,4 +1,6 @@
-<template>
+<template> <div>
+  <Navbar/>
+
   <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8">
     <div class="max-w-6xl mx-auto px-6">
       <!-- Profile Header Card -->
@@ -173,17 +175,21 @@
 
     </div>
   </div>
+  <Footer/>
+  </div>
 </template>
 
 <script setup>
 import {ref, onMounted, computed} from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios'
+import Footer from './Footer.vue';
 import ProgressSpinner from 'primevue/progressspinner'
 import Card from 'primevue/card'
 import Badge from 'primevue/badge'
 import ReviewCard from './ReviewCard.vue'
 import ReviewForm from "../views/ReviewForm.vue";
+import Navbar from './Navbar.vue';
 
 
 const route = useRoute()

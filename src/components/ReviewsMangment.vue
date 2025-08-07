@@ -1,33 +1,68 @@
 <template>
-  <div class="card">
-    <h2>All Doctor Reviews</h2>
-
-    <Button label="Filter by Doctor" icon="pi pi-filter" class="mb-3" @click="openFilterDialog" />
-
-    <DataTable :value="reviews" dataKey="id" class="mb-3">
-      <Column field="id" header="ID" />
-      <Column field="doctorName" header="Doctor" />
-      <Column field="userName" header="User" />
-      <Column field="overallRating" header="Rating" />
-      <Column field="comment" header="Comment" />
-      <Column field="createdAt" header="Created At" />
-    </DataTable>
-
-    <Dialog v-model:visible="filterDialog" header="Filter by Doctor" modal class="w-full max-w-2xl">
-      <Dropdown
-        v-model="selectedDoctor"
-        :options="doctors"
-        optionLabel="name"
-        optionValue="id"
-        placeholder="Select a Doctor"
-        class="w-full mb-3"
-      />
-
-      <div class="text-right">
-        <Button label="Apply Filter" icon="pi pi-check" @click="filterByDoctor" />
-        <Button label="Clear" icon="pi pi-times" class="ml-2" severity="secondary" @click="clearFilter" />
+  <div class="min-h-screen bg-gray-100 py-10 px-4 font-sans">
+    <div class="max-w-6xl mx-auto bg-white/70 backdrop-blur-md rounded-3xl shadow-xl p-8">
+      <!-- Header and Filter Button -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <h2 class="text-3xl font-semibold text-gray-800">All Doctor Reviews</h2>
+        <Button 
+          label="Filter by Doctor" 
+          icon="pi pi-filter" 
+          class="bg-blue-600 border-blue-600 text-white hover:bg-blue-700 transition-all duration-300 rounded-lg px-4 py-2"
+          @click="openFilterDialog" 
+        />
       </div>
-    </Dialog>
+
+      <!-- Review Table -->
+      <div class="overflow-x-auto rounded-xl shadow-md">
+        <DataTable 
+          :value="reviews" 
+          dataKey="id" 
+          responsiveLayout="scroll"
+          stripedRows
+        >
+          <Column field="id" header="ID" />
+          <Column field="doctorName" header="Doctor" />
+          <Column field="userName" header="User" />
+          <Column field="overallRating" header="Rating" />
+          <Column field="comment" header="Comment" />
+          <Column field="createdAt" header="Created At" />
+        </DataTable>
+      </div>
+
+      <!-- Filter Dialog -->
+      <Dialog 
+        v-model:visible="filterDialog" 
+        header="Filter by Doctor" 
+        modal 
+        class="w-full max-w-md rounded-xl"
+      >
+        <div class="space-y-4">
+          <Dropdown
+            v-model="selectedDoctor"
+            :options="doctors"
+            optionLabel="name"
+            optionValue="id"
+            placeholder="Select a Doctor"
+            class="w-full"
+          />
+
+          <div class="flex justify-end gap-3 pt-2">
+            <Button 
+              label="Apply Filter" 
+              icon="pi pi-check" 
+              class="bg-blue-600 border-blue-600 text-white hover:bg-blue-700 transition rounded-lg px-4 py-2"
+              @click="filterByDoctor" 
+            />
+            <Button 
+              label="Clear" 
+              icon="pi pi-times" 
+              class="bg-gray-200 text-gray-700 hover:bg-gray-300 transition rounded-lg px-4 py-2"
+              @click="clearFilter" 
+            />
+          </div>
+        </div>
+      </Dialog>
+    </div>
   </div>
 </template>
 

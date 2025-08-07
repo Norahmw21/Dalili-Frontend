@@ -4,7 +4,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import DoctorManagement from '../components/DoctorMangment.vue'
 import HospitalManagement from '../components/HospitalManagement.vue'
 import ReviewsMangment from '../components/ReviewsMangment.vue'
-
+ 
+import AdminLayout from '../components/AdminLayout.vue'
 
 // Views (pages)
 import Home from '../views/Landing02.vue'
@@ -29,21 +30,28 @@ const routes = [
   { path: '/compare', name: 'DoctorComparison', component: DoctorComparison },
   { path: '/doctor/:id', name: 'DoctorProfile', component: DoctorProfile },
     {
-    path: '/api/hospitals',
-    name: 'Hospitals',
-    component: HospitalManagement
-  },
-  {
-    path: '/doctors',
-    name: 'Doctors',
-    component: DoctorManagement
-  },
-   {
-    path: '/api/reviews',
-    name: 'Reviews',
-    component: ReviewsMangment
+    path: '/',
+    component: AdminLayout,
+    children: [
+      {
+        path: '/api/hospitals',
+        name: 'Hospitals',
+        component: HospitalManagement
+      },
+      {
+        path: '/doctors',
+        name: 'Doctors',
+        component: DoctorManagement
+      },
+      {
+        path: '/api/reviews',
+        name: 'Reviews',
+        component: ReviewsMangment
+      }
+    ]
   }
 ]
+
 
 const router = createRouter({
   history: createWebHistory(),

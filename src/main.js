@@ -5,7 +5,7 @@ import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 import 'primeicons/primeicons.css';
 import './style.css';
-import router from './router/Index';
+import router from './router/index';
 import axios from 'axios';
 
 // Font Awesome imports

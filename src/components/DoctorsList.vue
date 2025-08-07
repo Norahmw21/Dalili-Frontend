@@ -52,65 +52,86 @@
     <div class="flex flex-col md:flex-row flex-1 overflow-hidden">
 
       <!-- Doctor List -->
-      <div class="w-full md:w-1/2 overflow-y-auto p-4">
-        <div v-if="loading" class="flex justify-center items-center h-full">
-          <ProgressSpinner style="width: 50px; height: 50px" strokeWidth="8" fill="transparent"
-                           animationDuration=".5s"/>
-        </div>
+     <div class="w-full md:w-1/2 overflow-y-auto p-6 bg-white border-r border-gray-200">
+  <!-- Loading Spinner -->
+  <div v-if="loading" class="flex justify-center items-center h-full">
+    <ProgressSpinner
+      style="width: 50px; height: 50px"
+      strokeWidth="8"
+      fill="transparent"
+      animationDuration=".5s"
+    />
+  </div>
 
-        <div v-else-if="doctors.length === 0" class="text-center py-8">
-          <p class="text-gray-500">No doctors found</p>
-        </div>
+  <!-- No Doctors Found -->
+  <div v-else-if="doctors.length === 0" class="text-center py-10 text-gray-500 text-base font-medium">
+    No doctors found
+  </div>
 
-        <div v-else>
-          <div
-              v-for="doctor in doctors"
-              :key="`${doctor.id}-${doctor.id}`"
-              class="mb-6 p-4 border rounded-lg hover:shadow-md transition-shadow cursor-pointer"
-              :class="{ 'bg-blue-50': highlightedDoctor === doctor }"
-              @click="highlightMarker(doctor)"
-          >
-            <div class="flex items-start gap-4">
-              <img
-                  v-if="doctor.photoUrl"
-                  :src="doctor.photoUrl"
-                  class="w-16 h-16 rounded-full object-cover"
-                  alt="Doctor photo"
-              />
-              <div>
-                <h3 class="text-xl font-semibold">{{ doctor.doctorName }}</h3>
-                <p class="text-blue-600 font-medium">{{ doctor.specialty }}</p>
-                <p class="text-gray-600 mt-2">
-                  <i class="pi pi-building mr-2"></i>{{ doctor.hospitalName }}
-                </p>
-                <div class="flex flex-wrap gap-2 mt-3">
-                  <Tag :value="`${doctor.yearsOfExperience} years experience`" severity="info"/>
-                  <Tag :value="doctor.contactPhone" icon="pi pi-phone" severity="primary"/>
-                  <Tag :value="doctor.contactEmail" icon="pi pi-envelope"/>
-                </div>
+  <!-- Doctor Cards -->
+  <div v-else>
+    <div
+      v-for="doctor in doctors"
+      :key="`${doctor.id}-${doctor.id}`"
+      class="p-5 mb-6 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer"
+      :class="{ 'ring-2 ring-blue-300': highlightedDoctor === doctor }"
+      @click="highlightMarker(doctor)"
+    >
+      <div class="flex items-start gap-5">
+        <!-- Doctor Image -->
+        <img
+          v-if="doctor.photoUrl"
+          :src="doctor.photoUrl"
+          class="w-16 h-16 rounded-full object-cover shadow-sm border"
+          alt="Doctor photo"
+        />
 
-                <p class="text-gray-600 mt-2" v-if="doctor.distance">
-                  <i class="pi pi-map-marker mr-2"></i>{{ doctor.distance.toFixed(2) }} km away
-                </p>
+        <!-- Doctor Info -->
+        <div class="flex-1">
+          <h3 class="text-lg font-semibold text-gray-900">{{ doctor.doctorName }}</h3>
+          <p class="text-blue-600 font-medium mt-1">{{ doctor.specialty }}</p>
+          <p class="text-sm text-gray-600 mt-2 flex items-center">
+            <i class="pi pi-building mr-2 text-gray-500"></i>{{ doctor.hospitalName }}
+          </p>
 
-                <div class="flex items-center gap-2 mb-2">
-                  <input
-                      type="checkbox"
-                      :checked="selectedDoctors.includes(doctor.doctorId)"
-                      @change="toggleDoctor(doctor.doctorId)"
-                  />
-                  <label class="text-sm text-gray-500">Compare</label>
-                </div>
-
-                <div class="mt-4 flex gap-3">
-                  <Button class="!bg-blue-500 !border-blue-500 hover:!bg-blue-600 hover:!border-blue-600 !text-white" label="Details" @click.stop="goToDoctorProfile(doctor.doctorId)"/>
-                </div>
-
-              </div>
-            </div>
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mt-3">
+            <Tag :value="`${doctor.yearsOfExperience} years experience`" severity="info" />
+            <Tag :value="doctor.contactPhone" icon="pi pi-phone" severity="primary" />
+            <Tag :value="doctor.contactEmail" icon="pi pi-envelope" />
           </div>
+
+          <!-- Distance -->
+          <p class="text-sm text-gray-500 mt-2" v-if="doctor.distance">
+            <i class="pi pi-map-marker mr-2 text-gray-500"></i>{{ doctor.distance.toFixed(2) }} km away
+          </p>
+
+          <!-- Compare Checkbox -->
+          <div class="flex items-center gap-2 mt-3">
+            <input
+              type="checkbox"
+              :checked="selectedDoctors.includes(doctor.doctorId)"
+              @change="toggleDoctor(doctor.doctorId)"
+              class="form-checkbox text-blue-600"
+            />
+            <label class="text-sm text-gray-600">Compare</label>
+          </div>
+
+          <!-- Action Button -->
+         <div class="mt-4">
+  <Button
+    label="Details"
+    class="!bg-transparent !border-blue-600 !text-blue-800 hover:!bg-blue-50 hover:!text-blue-700 hover:!border-blue-700 font-medium px-4 py-2 rounded-md transition-colors duration-200"
+    @click.stop="goToDoctorProfile(doctor.doctorId)"
+  />
+</div>
+
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
 
       <!-- Map Container -->
       <div class="w-full md:w-1/2 h-[400px] md:h-auto relative">
@@ -124,6 +145,7 @@
         <div id="map" class="h-full w-full"></div>
       </div>
     </div>
+  <Footer/>
 
   </div>
 </template>
@@ -133,7 +155,7 @@ import {ref, onMounted} from 'vue';
 import axios from 'axios';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
+import Footer from './Footer.vue';
 import {useRouter} from 'vue-router';
 
 const router = useRouter();
