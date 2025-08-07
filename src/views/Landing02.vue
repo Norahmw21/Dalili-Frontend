@@ -1,11 +1,6 @@
 
 <template>
 
-    <div>
-    <!-- other components like welcome, reviews -->
-    <ChatBot />
-  </div>
-
   <section class="bg-white min-h-screen">
     <!-- Navbar -->
     <Navbar/>
@@ -42,153 +37,114 @@
 
    
 
-<!-- Service Cards -->
-<div class="grid md:grid-cols-3 gap-9">
-     
-  <!-- Doctor Search -->
-  <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
-    <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
-       <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-    </div>
-    <h3 class="font-bold text-teal-500 mb-2">DOCTOR SEARCH</h3>
-    <h4 class="font-semibold mb-3">Find Doctors Easily</h4>
-    <p class="text-gray-600 text-sm">Search by specialty, location, or rating to find the right doctor for your needs.</p>
-  </div>
+<!-- Our Services Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-12">
+          OUR <span class="text-teal-500">SERVICES</span>
+        </h2>
 
-  <!-- Reviews -->
-  <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
-    <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
-       <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-    </div>
-    <h3 class="font-bold text-teal-500 mb-2">REVIEWS</h3>
-    <h4 class="font-semibold mb-3">Real Patient Feedback</h4>
-    <p class="text-gray-600 text-sm">Read authentic patient reviews and experiences to choose confidently.</p>
-  </div>
-
-  <!-- Favorite Doctors -->
-  <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
-    <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
-       <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-    </div>
-    <h3 class="font-bold text-teal-500 mb-2">FAVORITES</h3>
-    <h4 class="font-semibold mb-3">Save Preferred Doctors</h4>
-    <p class="text-gray-600 text-sm">Bookmark your favorite doctors for quick access and future appointments.</p>
-  </div>
-
-  <!-- Profile Management -->
-  <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
-    <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
-       <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-    </div>
-    <h3 class="font-bold text-teal-500 mb-2">PROFILE</h3>
-    <h4 class="font-semibold mb-3">Secure Profile Control</h4>
-    <p class="text-gray-600 text-sm">Manage your personal information, password, and medical preferences with ease.</p>
-  </div>
-
-  <!-- Doctor Info -->
-  <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
-    <div class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
-       <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-    </div>
-    <h3 class="font-bold text-teal-500 mb-2">DOCTOR INFO</h3>
-    <h4 class="font-semibold mb-3">Verified Profiles</h4>
-    <p class="text-gray-600 text-sm">Explore detailed doctor credentials, specialties, contact details, and more.</p>
-  </div>
-
-  <!-- Future Features -->
-  <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition text-center">
-    <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
-       <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-    </div>
-    <h3 class="font-bold text-teal-500 mb-2">COMING SOON</h3>
-    <h4 class="font-semibold mb-3">Appointment Booking</h4>
-    <p class="text-gray-600 text-sm">Soon you'll be able to book appointments directly from the app.</p>
-  </div>
-</div>
-
-
-<!-- Why Choose Us Section -->
-<section class="py-16 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-8">
-    <div class="flex flex-col lg:flex-row items-center gap-12">
-      
-      <!-- Left Side -->
-      <div class="lg:w-1/2">
-        <h2 class="text-3xl font-bold text-gray-800 mb-2">WHY</h2>
-        <span class="text-3xl font-bold text-teal-500">CHOOSE US</span>
-        
-        <p class="text-gray-600 mt-6 mb-8">
-          We make finding trusted doctors and reviewing your experiences simple, secure, and helpful for everyone.
-        </p>
-
-        <div class="space-y-4">
-          <div class="flex items-center">
-            <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mr-4">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
+        <div class="grid gap-8 md:grid-cols-3">
+          <!-- Service Cards -->
+          <div v-for="(service, index) in services" :key="index"
+            class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition text-center">
+            <!-- Icon in green circle -->
+            <div class="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center mx-auto mb-5">
+              <img :src="service.icon" alt="icon" class="w-8 h-8 object-contain" />
             </div>
-            <span class="font-semibold text-gray-800">Verified Patient Reviews</span>
-          </div>
 
-          <div class="flex items-center">
-            <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mr-4">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <span class="font-semibold text-gray-800">Easy Doctor Search & Filtering</span>
-          </div>
-
-          <div class="flex items-center">
-            <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mr-4">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <span class="font-semibold text-gray-800">Secure Profile Management</span>
-          </div>
-
-          <div class="flex items-center">
-            <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mr-4">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <span class="font-semibold text-gray-800">Save & Favorite Trusted Doctors</span>
-          </div>
-
-          <div class="flex items-center">
-            <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center mr-4">
-              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <span class="font-semibold text-gray-800">Multilingual Interface for Local Users</span>
+            <h3 class="text-teal-600 font-bold text-lg mb-1">{{ service.title }}</h3>
+            <h4 class="text-gray-800 font-semibold mb-2 text-md">{{ service.subtitle }}</h4>
+            <p class="text-gray-600 text-sm">{{ service.description }}</p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Right Side Graphic -->
+
+<!-- Why Choose Us Section -->
+<section class="py-20 bg-gradient-to-b from-white to-gray-50">
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="flex flex-col lg:flex-row items-center gap-16">
+      
+      <!-- Left Content -->
+      <div class="lg:w-1/2">
+        <h2 class="text-4xl font-bold text-gray-800 leading-tight mb-4">
+          WHY <span class="text-teal-500">CHOOSE US</span>
+        </h2>
+
+        <p class="text-gray-600 text-lg mb-10">
+          We make finding trusted doctors and reviewing your experiences simple, secure, and helpful for everyone.
+        </p>
+
+        <ul class="space-y-6">
+          <li class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <span class="text-gray-800 font-medium text-base">Verified Patient Reviews</span>
+          </li>
+
+          <li class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <span class="text-gray-800 font-medium text-base">Easy Doctor Search & Filtering</span>
+          </li>
+
+          <li class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <span class="text-gray-800 font-medium text-base">Secure Profile Management</span>
+          </li>
+
+          <li class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <span class="text-gray-800 font-medium text-base">Save & Favorite Trusted Doctors</span>
+          </li>
+
+          <li class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <span class="text-gray-800 font-medium text-base">Multilingual Interface for Local Users</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Graphic -->
       <div class="lg:w-1/2 relative">
         <div class="relative">
           <div class="absolute inset-0 bg-teal-400 rounded-full w-80 h-80 mx-auto opacity-20"></div>
-          <div class="relative z-10 w-full max-w-sm mx-auto rounded-full h-80 bg-gray-200 flex items-center justify-center">
-            <span class="text-gray-500">Patient-first Platform</span>
+
+          <div class="relative z-10 w-full max-w-sm mx-auto rounded-full h-80 bg-gray-100 flex items-center justify-center shadow-inner">
+            <span class="text-gray-500 text-center px-4">Patient-first Platform</span>
           </div>
-          <div class="absolute top-4 right-4 bg-teal-500 text-white rounded-full w-16 h-16 flex items-center justify-center font-bold text-sm text-center">
+
+          <div class="absolute top-4 right-4 bg-teal-500 text-white rounded-full w-16 h-16 flex flex-col items-center justify-center font-bold text-sm shadow-lg">
             100%<br />Verified
           </div>
         </div>
@@ -197,95 +153,159 @@
     </div>
   </div>
 </section>
+<!-- Top Doctors Section -->
+<section class="py-20 bg-white relative overflow-hidden">
+  <!-- World map background -->
+  <div
+    class="absolute inset-0 bg-center bg-no-repeat opacity-25 pointer-events-none"
+    style="background-image: url('/src/assets/world-map.png'); background-size: 600px;"
+  ></div>
 
-    <!-- Top a Doctor Section -->
-      <section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold text-gray-800 mb-10">
-        TOP <span class="text-teal-500">DOCTORS</span>
-      </h2>
+  <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+    <!-- Title -->
+    <h2 class="text-4xl font-bold text-gray-800 mb-14">
+      TOP <span class="text-teal-500">DOCTORS</span>
+    </h2>
 
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <div
-          v-for="doctor in topDoctors"
-          :key="doctor.id"
-          class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition"
-        >
+    <!-- Doctors Grid -->
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div
+        v-for="doctor in topDoctors"
+        :key="doctor.id"
+        class="flex flex-col items-center justify-center"
+      >
+        <!-- Doctor Image & Rating Badge -->
+        <div class="relative w-24 h-24 mb-3">
           <img
             :src="doctor.photoUrl || defaultImage"
             alt="Doctor photo"
-            class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+            class="w-24 h-24 rounded-full object-cover border-4 border-teal-500 shadow"
           />
-          <h3 class="text-lg font-semibold text-gray-800">
-            {{ doctor.name }}
-          </h3>
-          <p class="text-sm text-gray-600 mb-2">
-            {{ doctor.specialty }}
-          </p>
-          <div class="flex justify-center items-center space-x-1 text-yellow-400 mb-1">
-            <span v-for="i in 5" :key="i">
-              <i :class="i <= Math.round(doctor.averageRating || 0) ? 'fas fa-star' : 'far fa-star'"></i>
-            </span>
+          <div
+            class="absolute -top-2 -right-2 bg-teal-500 text-white text-xs font-bold rounded-full px-2 py-1"
+          >
+            ★ {{ doctor.averageRating?.toFixed(1) || 'N/A' }}
           </div>
-          <p class="text-sm text-gray-600">
-            {{ doctor.averageRating?.toFixed(1) || 'N/A' }} / 5.0
-          </p>
+        </div>
+
+        <!-- Doctor Name -->
+        <h3 class="text-md font-semibold text-gray-800 mb-1">
+          {{ doctor.name }}
+        </h3>
+
+        <!-- Stars -->
+        <div class="flex justify-center items-center text-yellow-400 mb-1">
+          <span v-for="i in 5" :key="i">
+            <i :class="i <= Math.round(doctor.averageRating || 0) ? 'fas fa-star' : 'far fa-star'"></i>
+          </span>
         </div>
       </div>
     </div>
-  </section>
-    <!-- Contact Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-4xl mx-auto px-8 text-center">
-        <h2 class="text-3xl font-bold text-gray-800 mb-8">CONTACT <span class="text-teal-500">US</span></h2>
-        
-        <div class="bg-teal-500 text-white p-6 rounded-full mb-8 max-w-2xl mx-auto">
-          <p class="text-sm">
-            blablabalalbalbabala
-          </p>
-        </div>
+  </div>
+</section>
 
-        <form class="space-y-6 max-w-lg mx-auto">
-          <div class="relative">
-            <input type="text" placeholder="Name" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500" />
-            <span class="absolute right-4 top-4 text-gray-400">+</span>
-          </div>
-          
-          <div class="relative">
-            <input type="email" placeholder="Email" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500" />
-            <span class="absolute right-4 top-4 text-gray-400">+</span>
-          </div>
-          
-          <div class="relative">
-            <input type="tel" placeholder="Phone" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500" />
-            <span class="absolute right-4 top-4 text-gray-400">+</span>
-          </div>
-          
-          <div class="relative">
-            <textarea placeholder="Message" rows="4" class="w-full p-4 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 resize-none"></textarea>
-            <span class="absolute right-4 top-4 text-gray-400">+</span>
-          </div>
-          
-          <button type="submit" class="bg-gray-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition">
-            SEND
-          </button>
-        </form>
+<!-- Contact Section -->
+<section class="py-20 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-bold text-gray-800 mb-10">
+      CONTACT <span class="text-teal-500">US</span>
+    </h2>
+
+    <p class="text-gray-600 mb-12 max-w-2xl mx-auto">
+      We’d love to hear from you. Whether you have a question, feedback, or a suggestion — just drop us a message!
+    </p>
+
+    <form class="space-y-6 max-w-xl mx-auto text-left">
+      <div class="flex flex-col gap-4 md:flex-row">
+        <input
+          type="text"
+          placeholder="Your Name"
+          class="w-full p-4 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500"
+        />
+        <input
+          type="email"
+          placeholder="Email Address"
+          class="w-full p-4 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500"
+        />
       </div>
-    </section>
+
+      <input
+        type="tel"
+        placeholder="Phone Number"
+        class="w-full p-4 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500"
+      />
+
+      <textarea
+        placeholder="Your Message"
+        rows="5"
+        class="w-full p-4 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-teal-500 resize-none"
+      ></textarea>
+
+      <div class="text-center">
+        <button
+          type="submit"
+          class="bg-teal-500 hover:bg-teal-600 text-white px-10 py-3 rounded-full font-semibold transition"
+        >
+          SEND MESSAGE
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
 
     <!-- Footer -->
     <Footer/>
   </section>
 </template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
+import ChatBot from '../components/ChatBot.vue'
 
 const topDoctors = ref([])
 const defaultImage = '/src/assets/default-doctor.png'
+
+const services = [
+  {
+    title: 'DOCTOR SEARCH',
+    subtitle: 'Find Doctors Easily',
+    description: 'Search by specialty, location, or rating to find the right doctor for your needs.',
+    icon: '/src/assets/search-icon.png'
+  },
+  {
+    title: 'REVIEWS',
+    subtitle: 'Real Patient Feedback',
+    description: 'Read authentic patient reviews and experiences to choose confidently.',
+    icon: '/src/assets/review-icon.png'
+  },
+  {
+    title: 'FAVORITES',
+    subtitle: 'Save Preferred Doctors',
+    description: 'Bookmark your favorite doctors for quick access and future appointments.',
+    icon: '/src/assets/favorite-icon.png'
+  },
+  {
+    title: 'PROFILE',
+    subtitle: 'Secure Profile Control',
+    description: 'Manage your information, password, and preferences easily.',
+    icon: '/src/assets/profile-icon.png'
+  },
+  {
+    title: 'DOCTOR INFO',
+    subtitle: 'Verified Profiles',
+    description: 'Explore credentials, specialties, contact details, and more.',
+    icon: '/src/assets/info-icon.png'
+  },
+  {
+    title: 'COMING SOON',
+    subtitle: 'Appointment Booking',
+    description: 'Soon you’ll be able to book appointments directly from the app.',
+    icon: '/src/assets/calendar-icon.png'
+  }
+]
 
 onMounted(async () => {
   try {
