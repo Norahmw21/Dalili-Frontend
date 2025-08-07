@@ -319,7 +319,7 @@ const handleLogin = async () => {
       if (data.role === 'admin') {
         router.push('/doctors')
       } else {
-        router.push('/') // or another page for non-admin users
+        router.push('/doctorlist') // or another page for non-admin users
       }
     }
   } catch (err) {
