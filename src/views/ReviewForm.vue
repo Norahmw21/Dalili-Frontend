@@ -116,11 +116,12 @@ const route = useRoute()
 const router = useRouter()
 const doctorId = route.params.doctorId
 const userId = JSON.parse(localStorage.getItem('user') || '{}')?.user_id
-
+ 
 const review = ref({
   overall_rating: 0,
   comment: ''
 })
+ 
 
 const loading = ref(false)
 const selectedCategory = ref('')

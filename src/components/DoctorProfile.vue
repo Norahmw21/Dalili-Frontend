@@ -188,7 +188,7 @@ import ProgressSpinner from 'primevue/progressspinner'
 import Card from 'primevue/card'
 import Badge from 'primevue/badge'
 import ReviewCard from './ReviewCard.vue'
-import ReviewForm from "../views/ReviewForm.vue";
+import ReviewsPage from "../views/ReviewForm.vue";
 import Navbar from './Navbar.vue';
 
 
@@ -204,11 +204,11 @@ const router = useRouter()
 const userId = JSON.parse(localStorage.getItem('user') || '{}')?.user_id
 const goToAddReview = () => {
   router.push({
-    name: 'ReviewForm',
-    params: {id: doctorId},
-    query: {userId}
+    name: 'ReviewsPage',
+    params: { doctorId: doctorId }
   })
 }
+
 
 const fetchDoctor = async () => {
   try {

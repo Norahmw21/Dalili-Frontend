@@ -23,8 +23,12 @@ const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: Login },
   { path: '/register', name: 'Register', component: Register },
-  { path: '/reviews', name: 'ReviewsPage', component: ReviewsPage },
-
+{
+  path: '/review/:doctorId', // must be doctorId, not id
+  name: 'ReviewsPage',
+  component: ReviewsPage
+}
+,
   // Doctor-related pages
   { path: '/doctorList', name: 'DoctorList', component: DoctorsList },
   { path: '/compare', name: 'DoctorComparison', component: DoctorComparison },
