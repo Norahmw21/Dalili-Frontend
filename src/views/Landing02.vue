@@ -263,7 +263,7 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import Navbar from '../components/Navbar.vue'
 import Footer from '../components/Footer.vue'
-import ChatBot from '../components/ChatBot.vue'
+// import ChatBot from '../components/ChatBot.vue'
 
 const topDoctors = ref([])
 const defaultImage = '/src/assets/default-doctor.png'
