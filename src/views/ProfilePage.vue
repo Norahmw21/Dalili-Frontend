@@ -264,42 +264,60 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
 
 const baseUrl = 'http://localhost:8080'
-const userId = localStorage.getItem('userId')
+const route = useRoute()
+const router = useRouter()
 
+const userId = route.params.userId || localStorage.getItem('userId')
 const activeTab = ref('settings')
 const user = ref({ name: '', email: '', password: '' })
 const favoriteDoctors = ref([])
 const reviews = ref([])
 
+if (!userId) {
+  alert('User ID not found. Please log in again.')
+  router.push('/login')
+}
+
+// Computed Titles
 const getTabTitle = computed(() => {
-  if (activeTab.value === 'settings') return 'Account Settings'
-  if (activeTab.value === 'favorites') return 'Favorite Doctors'
-  if (activeTab.value === 'reviews') return 'My Reviews'
-  return ''
+  switch (activeTab.value) {
+    case 'settings': return 'Account Settings'
+    case 'favorites': return 'Favorite Doctors'
+    case 'reviews': return 'My Reviews'
+    default: return ''
+  }
 })
 
 const getTabSubtitle = computed(() => {
-  if (activeTab.value === 'settings') return 'Manage your account information and preferences'
-  if (activeTab.value === 'favorites') return 'View and manage your favorite healthcare providers'
-  if (activeTab.value === 'reviews') return 'Your feedback and ratings for doctors'
-  return ''
+  switch (activeTab.value) {
+    case 'settings': return 'Manage your account information and preferences'
+    case 'favorites': return 'View and manage your favorite healthcare providers'
+    case 'reviews': return 'Your feedback and ratings for doctors'
+    default: return ''
+  }
 })
 
 const getUserInitials = computed(() => {
   if (!user.value.name) return 'U'
-  return user.value.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+  return user.value.name
+    .split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2)
 })
 
 const tabClass = (tab) => {
-  return activeTab.value === tab 
-    ? 'bg-teal-500 text-white shadow-lg' 
+  return activeTab.value === tab
+    ? 'bg-teal-500 text-white shadow-lg'
     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-800'
 }
 
-// Fetch user info
+// API Calls
 const loadUser = async () => {
   try {
     const res = await axios.get(`${baseUrl}/api/users/${userId}`)
@@ -309,7 +327,6 @@ const loadUser = async () => {
   }
 }
 
-// Update user info
 const updateUserInfo = async () => {
   try {
     await axios.put(`${baseUrl}/api/users/${userId}`, user.value)
@@ -320,7 +337,6 @@ const updateUserInfo = async () => {
   }
 }
 
-// Fetch favorite doctors
 const loadFavorites = async () => {
   try {
     const res = await axios.get(`${baseUrl}/api/favorites/user/${userId}`)
@@ -334,7 +350,6 @@ const loadFavorites = async () => {
   }
 }
 
-// Fetch user reviews
 const loadReviews = async () => {
   try {
     const res = await axios.get(`${baseUrl}/api/reviews/user/${userId}`)
@@ -344,28 +359,30 @@ const loadReviews = async () => {
   }
 }
 
-// Format date
+// Utilities
 const formatDate = (iso) => {
-  return new Date(iso).toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'short', 
-    day: 'numeric' 
+  return new Date(iso).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
   })
 }
 
-// Logout
 const logout = () => {
   localStorage.removeItem('token')
+  localStorage.removeItem('user')
   localStorage.removeItem('userId')
-  window.location.href = '/login'
+  router.push('/login')
 }
 
+// On Mount
 onMounted(() => {
   loadUser()
   loadFavorites()
   loadReviews()
 })
 </script>
+
 
 <style scoped>
 body {
