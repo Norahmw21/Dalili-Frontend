@@ -308,16 +308,17 @@ const handleLogin = async () => {
     if (!response.ok) throw new Error(data.message || 'Login failed')
 
     if (data) {
-      // Save user data to localStorage
+      // ✅ Save to localStorage
       if (typeof Storage !== 'undefined') {
         localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('token', data.token)
       }
 
-      // Redirect based on user role
+      // ✅ Redirect based on role
       if (data.role === 'admin') {
         router.push('/doctors')
       } else {
-        router.push('/') // or another page for non-admin users
+        router.push('/doctorlist')
       }
     }
   } catch (err) {

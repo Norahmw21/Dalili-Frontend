@@ -12,6 +12,12 @@ import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser, faEnvelope, faLock, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { getCurrentUser } from '../src/utilities/auth';
+
+const currentUser = getCurrentUser();
+if (currentUser && currentUser.token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${currentUser.token}`;
+}
 
 // Add icons to the library
 library.add(faUser, faEnvelope, faLock, faArrowRight);
