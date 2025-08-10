@@ -16,7 +16,7 @@
       <div class="overflow-x-auto">
         <DataTable
             :value="doctors"
-            dataKey="id"
+            dataKey="doctorId"
             class="rounded-xl overflow-hidden shadow-md"
             responsiveLayout="scroll"
             stripedRows
@@ -64,7 +64,7 @@
       <!-- Modal Form -->
       <Dialog
           v-model:visible="showForm"
-          :header="editingDoctor.id ? 'Edit Doctor' : 'Add Doctor'"
+          :header="editingDoctor.doctorId ? 'Edit Doctor' : 'Add Doctor'"
           modal
           class="w-full max-w-3xl rounded-xl"
           :closable="false"
@@ -73,7 +73,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Name:</label>
-              <input v-model="editingDoctor.name"
+              <input v-model="editingDoctor.doctorName"
                      class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"/>
             </div>
             <div>
@@ -162,8 +162,8 @@ const doctors = ref([])
 const showForm = ref(false)
 
 const emptyDoctor = {
-  id: null,
-  name: '',
+  doctorId: null,
+  doctorName: '',
   bio: '',
   photoUrl: '',
   yearsOfExperience: 0,
@@ -217,25 +217,43 @@ const cancelEdit = () => {
 }
 
 const saveDoctor = async () => {
-  const {id} = editingDoctor.value
+  const id = editingDoctor.value.doctorId
+
   const url = id
       ? `http://localhost:8080/doctors/${id}`
       : `http://localhost:8080/doctors`
-
   const method = id ? 'PUT' : 'POST'
 
-  await fetch(url, {
+  const payload = {
+    id: id ?? null,
+    name: editingDoctor.value.doctorName,
+    bio: editingDoctor.value.bio,
+    photoUrl: editingDoctor.value.photoUrl,
+    yearsOfExperience: editingDoctor.value.yearsOfExperience,
+    experience: editingDoctor.value.experience,
+    contactPhone: editingDoctor.value.contactPhone,
+    contactEmail: editingDoctor.value.contactEmail,
+    specialty: editingDoctor.value.specialty
+  }
+
+  const res = await fetch(url, {
     method,
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(editingDoctor.value),
+    body: JSON.stringify(payload),
   })
 
+  if (!res.ok) {
+    console.error('Save failed', await res.text())
+    return
+  }
+
   showForm.value = false
-  fetchDoctors()
+  await fetchDoctors()
 }
+
 
 const deleteDoctor = async (id) => {
   await fetch(`http://localhost:8080/doctors/${id}`, {
