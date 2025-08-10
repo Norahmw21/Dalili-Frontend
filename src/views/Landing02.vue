@@ -7,24 +7,28 @@
 
     <!-- Hero Section -->
     <div class="flex flex-col lg:flex-row items-center justify-between px-8 py-16 max-w-7xl mx-auto">
-      <div class="lg:w-1/2 text-left">
+  <!-- Hero Section -->
+<div class="flex flex-col items-center justify-center text-center px-8 py-20 max-w-4xl mx-auto">
+  <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-800 mb-6 leading-tight">
+    YOUR <span class="text-black">HEALTH</span><br />
+    <span class="text-teal-500 text-3xl sm:text-4xl">OUR PRIORITY</span>
+  </h1>
 
-        <h1 class="text-5xl font-bold text-gray-800 mb-6 leading-tight">
-          YOUR
-          <span class="text-black">HEALTH</span><br/>
-          <span class="text-teal-500 text-3xl">OUR PRIORITY</span>
-        </h1>
-        
-        <p class="text-gray-600 mb-8 max-w-md">
-          WELCOME TO DALILI Your Trusted Companion For Finding The Right Doctor.
-        </p>
-        
-       <button @click="$router.push('/login')" class="bg-teal-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-600 transition">
-  Get Started →
-</button>
+  <p class="text-gray-600 mb-8 max-w-xl text-lg">
+    WELCOME TO <span class="font-bold text-gray-800">DALILI</span> — Your Trusted Companion For Finding The Right Doctor.
+  </p>
+
+  <button
+    @click="$router.push('/login')"
+    class="bg-teal-500 hover:bg-teal-600 text-white px-10 py-3 rounded-full font-semibold text-lg transition duration-300 shadow-lg"
+  >
+    Get Started →
+  </button>
+ 
+
 
       </div>
-
+<!-- 
       <div class="lg:w-1/2 mt-10 lg:mt-0 relative">
         <div class="relative">
           <div class="absolute inset-0 bg-teal-400 rounded-full w-80 h-80 mx-auto opacity-20"></div>
@@ -32,7 +36,7 @@
             <span class="text-gray-500">Doctor Image</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
    
@@ -65,78 +69,71 @@
 <!-- Why Choose Us Section -->
 <section class="py-20 bg-gradient-to-b from-white to-gray-50">
   <div class="max-w-7xl mx-auto px-8">
-    <div class="flex flex-col lg:flex-row items-center gap-16">
-      
-      <!-- Left Content -->
-      <div class="lg:w-1/2">
-        <h2 class="text-4xl font-bold text-gray-800 leading-tight mb-4">
-          WHY <span class="text-teal-500">CHOOSE US</span>
-        </h2>
+ <!-- Why Choose Us Section -->
+<div class="flex flex-col lg:flex-row items-center justify-center gap-16 px-8 py-20 max-w-6xl mx-auto text-center lg:text-left">
+  
+  <!-- Left Content -->
+  <div class="lg:w-2/3">
+    <h2 class="text-4xl font-bold text-gray-800 leading-tight mb-4">
+      WHY <span class="text-teal-500">CHOOSE US</span>
+    </h2>
 
-        <p class="text-gray-600 text-lg mb-10">
-          We make finding trusted doctors and reviewing your experiences simple, secure, and helpful for everyone.
-        </p>
+    <p class="text-gray-600 text-lg mb-10 max-w-2xl mx-auto lg:mx-0">
+      We make finding trusted doctors and reviewing your experiences simple, secure, and helpful for everyone.
+    </p>
 
-        <ul class="space-y-6">
-          <li class="flex items-start">
-            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
-              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <span class="text-gray-800 font-medium text-base">Verified Patient Reviews</span>
-          </li>
+    <ul class="space-y-6">
+      <li class="flex items-start justify-center lg:justify-start">
+        <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1..." clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="text-gray-800 font-medium text-base">Verified Patient Reviews</span>
+      </li>
 
-          <li class="flex items-start">
-            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
-              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <span class="text-gray-800 font-medium text-base">Easy Doctor Search & Filtering</span>
-          </li>
+      <li class="flex items-start justify-center lg:justify-start">
+        <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1..." clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="text-gray-800 font-medium text-base">Easy Doctor Search & Filtering</span>
+      </li>
 
-          <li class="flex items-start">
-            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
-              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <span class="text-gray-800 font-medium text-base">Secure Profile Management</span>
-          </li>
+      <li class="flex items-start justify-center lg:justify-start">
+        <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1..." clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="text-gray-800 font-medium text-base">Secure Profile Management</span>
+      </li>
 
-          <li class="flex items-start">
-            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
-              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <span class="text-gray-800 font-medium text-base">Save & Favorite Trusted Doctors</span>
-          </li>
+      <li class="flex items-start justify-center lg:justify-start">
+        <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1..." clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="text-gray-800 font-medium text-base">Save & Favorite Trusted Doctors</span>
+      </li>
 
-          <li class="flex items-start">
-            <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
-              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                      clip-rule="evenodd"/>
-              </svg>
-            </div>
-            <span class="text-gray-800 font-medium text-base">Multilingual Interface for Local Users</span>
-          </li>
-        </ul>
-      </div>
+      <li class="flex items-start justify-center lg:justify-start">
+        <div class="flex-shrink-0 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-4 shadow-md">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1..." clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <span class="text-gray-800 font-medium text-base">Multilingual Interface for Local Users</span>
+      </li>
+    </ul>
+  </div>
+ 
+
 
       <!-- Right Graphic -->
-      <div class="lg:w-1/2 relative">
+      <!-- <div class="lg:w-1/2 relative">
         <div class="relative">
           <div class="absolute inset-0 bg-teal-400 rounded-full w-80 h-80 mx-auto opacity-20"></div>
 
@@ -148,7 +145,7 @@
             100%<br />Verified
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>

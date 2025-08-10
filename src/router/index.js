@@ -12,7 +12,7 @@ import Home from '../views/Landing02.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import ReviewsPage from '../views/ReviewForm.vue'
-
+import ProfilePage from "../views/ProfilePage.vue"
 // Components
 import DoctorsList from '../components/DoctorsList.vue'
 import DoctorComparison from '../components/DoctorComparison.vue'
@@ -22,6 +22,11 @@ const routes = [
   // General/Auth pages
   { path: '/', name: 'Home', component: Home },
   { path: '/login', name: 'Login', component: Login },
+  {
+  path: '/profile/:userId',
+  name: 'ProfilePage',
+  component: ProfilePage
+},
   { path: '/register', name: 'Register', component: Register },
 {
   path: '/review/:doctorId', // must be doctorId, not id
