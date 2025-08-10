@@ -53,7 +53,7 @@
                 <Button
                     icon="pi pi-trash"
                     class="p-button-sm text-red-500 hover:text-red-700"
-                    @click="deleteDoctor(slotProps.data.id)"
+                    @click="deleteDoctor(slotProps.data.doctorId)"
                 />
               </div>
             </template>
@@ -184,7 +184,9 @@ const fetchDoctors = async () => {
     }
   })
   doctors.value = await res.json()
+  console.log(doctors)
 }
+
 
 const hospitals = ref([])
 const token = localStorage.getItem('token')
