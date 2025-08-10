@@ -79,9 +79,15 @@ const doctors = ref([])
 const filterDialog = ref(false)
 const selectedDoctor = ref(null)
 
+const token = localStorage.getItem('token')
 const fetchAllReviews = async () => {
   try {
-    const res = await fetch('http://localhost:8080/api/reviews/all');
+    const res = await fetch('http://localhost:8080/api/reviews/all',{
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
     console.log('Status:', res.status);  // HTTP status code
     if (!res.ok) console.error('Error response', await res.text());
     const data = await res.json();
@@ -95,7 +101,12 @@ const fetchAllReviews = async () => {
 
 const fetchAllDoctors = async () => {
   try {
-    const res = await fetch('http://localhost:8080/doctors/all')
+    const res = await fetch('http://localhost:8080/doctors/all',{
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
     doctors.value = await res.json()
   } catch (error) {
     console.error('Failed to fetch doctors:', error)
@@ -110,7 +121,12 @@ const openFilterDialog = async () => {
 const filterByDoctor = async () => {
   if (!selectedDoctor.value) return
   try {
-    const res = await fetch(`http://localhost:8080/api/reviews/doctor/${selectedDoctor.value}`)
+    const res = await fetch(`http://localhost:8080/api/reviews/doctor/${selectedDoctor.value}`,{
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
     reviews.value = await res.json()
     filterDialog.value = false
   } catch (error) {
