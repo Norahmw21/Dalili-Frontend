@@ -1,5 +1,5 @@
 // src/main.js
-import { createApp } from 'vue';
+import {createApp} from 'vue';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
@@ -9,34 +9,40 @@ import router from './router/index';
 import axios from 'axios';
 
 // Font Awesome imports
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faUser, faEnvelope, faLock, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { getCurrentUser } from '../src/utilities/auth';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
+import {faUser, faEnvelope, faLock, faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import {getCurrentUser, isTokenExpired} from '../src/utilities/auth';
 
 const currentUser = getCurrentUser();
 if (currentUser && currentUser.token) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${currentUser.token}`;
+    if (isTokenExpired(currentUser.token)) {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+    } else {
+        axios.defaults.headers.common['Authorization'] = `Bearer ${currentUser.token}`;
+    }
 }
+
 
 // Add icons to the library
 library.add(faUser, faEnvelope, faLock, faArrowRight);
 
 // Configure Axios globally
- 
-
 axios.defaults.baseURL = 'http://localhost:8080';
 axios.defaults.headers.common['Accept'] = 'application/json';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
+
 
 // Create the Vue app
 const app = createApp(App);
 
 // Use PrimeVue with Aura theme
 app.use(PrimeVue, {
-  theme: {
-    preset: Aura,
-  },
+    theme: {
+        preset: Aura,
+    },
 });
 
 // Register Font Awesome globally

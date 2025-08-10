@@ -7,7 +7,7 @@
     <main class="flex-grow flex items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
       <div class="w-full max-w-7xl">
         <div class="bg-white rounded-3xl shadow-2xl overflow-hidden min-h-[700px] flex flex-col lg:flex-row">
-          
+
           <!-- Left Side - Hero Section -->
           <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
             <!-- Subtle Background Elements -->
@@ -105,7 +105,7 @@
           <!-- Right Side - Form Section -->
           <div class="w-full lg:w-1/2 flex items-center justify-center px-8 py-12 lg:px-16">
             <div class="w-full max-w-lg space-y-8">
-              
+
               <!-- Mobile Logo & Header -->
               <div class="text-center lg:hidden">
                 <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-lg">
@@ -120,8 +120,8 @@
 
               <!-- Back Button (Mobile) -->
               <div class="lg:hidden">
-                <router-link 
-                  to="/" 
+                <router-link
+                  to="/"
                   class="inline-flex items-center text-slate-400 hover:text-slate-600 transition-colors duration-200 group"
                 >
                   <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,7 +139,7 @@
 
               <!-- User Type Toggle -->
               <div class="bg-slate-100 rounded-2xl p-1.5 flex space-x-1">
-                <button type="button" 
+                <button type="button"
                   class="flex-1 py-4 px-6 rounded-xl font-semibold text-sm transition-all duration-200 bg-slate-900 text-white shadow-md">
                   <svg class="w-5 h-5 inline mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
@@ -237,8 +237,8 @@
               <div class="text-center pt-6 border-t border-slate-200">
                 <p class="text-slate-600">
                   Don't have an account?
-                  <router-link 
-                    to="/register" 
+                  <router-link
+                    to="/register"
                     class="text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-200 ml-1"
                   >
                     Sign up for free
@@ -308,13 +308,13 @@ const handleLogin = async () => {
     if (!response.ok) throw new Error(data.message || 'Login failed')
 
     if (data) {
-      // ✅ Save to localStorage
+      //  Save to localStorage
       if (typeof Storage !== 'undefined') {
         localStorage.setItem('user', JSON.stringify(data))
         localStorage.setItem('token', data.token)
       }
 
-      // ✅ Redirect based on role
+      //  Redirect based on role
       if (data.role === 'admin') {
         router.push('/doctors')
       } else {
@@ -328,7 +328,6 @@ const handleLogin = async () => {
   }
 }
 </script>
-
 
 <style scoped>
 .font-system {
