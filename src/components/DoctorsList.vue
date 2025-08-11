@@ -145,9 +145,9 @@
         <div id="map" class="h-full w-full"></div>
       </div>
     </div>
-  <Footer/>
 
   </div>
+  <Footer/>
 </template>
 
 <script setup>

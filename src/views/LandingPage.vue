@@ -73,42 +73,6 @@
     </div>
   </section>
 
-<!-- Top Doctors Section -->
-<section class="py-16 bg-gray-100">
-  <div class="max-w-7xl mx-auto px-4">
-    <h2 class="text-3xl font-bold text-blue-700 text-center mb-12">
-      Top Rated <span class="text-black">Doctors</span>
-    </h2>
-
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      <div
-        v-for="doctor in topDoctors"
-        :key="doctor.id"
-        class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition"
-      >
-        <img
-          :src="doctor.photoUrl || defaultImage"
-          alt="Doctor photo"
-          class="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-        />
-        <h3 class="text-lg font-semibold text-gray-800">
-          {{ doctor.name }}
-        </h3>
-        <p class="text-sm text-gray-600 mb-2">
-          {{ doctor.specialty }}
-        </p>
-        <div class="flex justify-center items-center space-x-1 text-yellow-400 mb-1">
-          <span v-for="i in 5" :key="i">
-            <i :class="i <= Math.round(doctor.averageRating || 0) ? 'fas fa-star' : 'far fa-star'"></i>
-          </span>
-        </div>
-        <p class="text-sm text-gray-600">
-          {{ doctor.averageRating?.toFixed(1) || 'N/A' }} / 5.0
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Footer -->
 <footer class="bg-white py-6 text-center text-sm text-gray-500">
@@ -116,33 +80,3 @@
 </footer>
 </section>
 </template>
-
-<script setup>
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
-
-const topDoctors = ref([])
-const defaultImage = '/src/assets/default-doctor.png'
-
-onMounted(async () => {
-  try {
-  const response = await axios.get('http://localhost:8080/doctors/top')
-
-  // Ensure the response is an array
-  if (Array.isArray(response.data)) {
-    // Just take the first 5 doctors (no sorting)
-    topDoctors.value = response.data
-  .filter(d => typeof d.averageRating === 'number')
-  .sort((a, b) => b.averageRating - a.averageRating)
-  .slice(0, 5)
-
-  } else {
-    console.warn('Unexpected response format:', response.data)
-    topDoctors.value = []
-  }
-} catch (error) {
-  console.error('Error fetching top doctors:', error)
-}
-
-})
-</script>
