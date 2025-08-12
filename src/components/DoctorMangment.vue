@@ -225,7 +225,6 @@ const saveDoctor = async () => {
   const method = id ? 'PUT' : 'POST'
 
   const payload = {
-    id: id ?? null,
     name: editingDoctor.value.doctorName,
     bio: editingDoctor.value.bio,
     photoUrl: editingDoctor.value.photoUrl,
@@ -233,8 +232,10 @@ const saveDoctor = async () => {
     experience: editingDoctor.value.experience,
     contactPhone: editingDoctor.value.contactPhone,
     contactEmail: editingDoctor.value.contactEmail,
-    specialty: editingDoctor.value.specialty
+    specialty: editingDoctor.value.specialty,
+    hospitalId: editingDoctor.value.hospitalId
   }
+
 
   const res = await fetch(url, {
     method,
