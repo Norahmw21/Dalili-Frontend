@@ -8,6 +8,16 @@ Dalili is a modern **doctor search and review web application** built with **Vue
 It helps patients easily find trusted doctors, read real reviews, and make informed decisions about their healthcare.
 
 ---
+<img width="1920" height="1140" alt="admin dashboard" src="https://github.com/user-attachments/assets/a1226ffa-b251-4e25-82e2-c2388af55569" />
+<img width="1920" height="1140" alt="add review" src="https://github.com/user-attachments/assets/31c3867b-1c22-49df-a650-cee406e51006" />
+<img width="1920" height="1140" alt="login" src="https://github.com/user-attachments/assets/31fbfbf7-5c27-474a-b3b5-f5d9806d8b57" />
+<img width="1920" height="1140" alt="landing page" src="https://github.com/user-attachments/assets/0171bc67-fb28-40e4-87f8-1265386574e4" />
+<img width="1920" height="1140" alt="doctos list" src="https://github.com/user-attachments/assets/52a666cf-be5f-4a3e-a99a-43c990997b1f" />
+<img width="1920" height="1140" alt="doctor profile" src="https://github.com/user-attachments/assets/78766bd6-1dc3-40ed-bba5-dc08eb2546e9" />
+<img width="1920" height="1140" alt="compare" src="https://github.com/user-attachments/assets/b7822eb9-d891-447e-8c2f-f224780d52a2" />
+
+---
+
 
 ## 1️⃣ Features
 
